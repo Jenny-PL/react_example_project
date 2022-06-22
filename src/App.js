@@ -25,17 +25,28 @@ const initialStudentData = [
   },
 ];
 
+const courseList = ["math", "geometry", "biology", "art"];
+
 function App() {
   const [studentData, setStudentData] = useState(initialStudentData);
-  console.log(
-    "Why do I hhave access to initialStudentData if it's defned outside the function?: App.jsline 30ish"
-  );
+  const [newCourseList, setCourseList] = useState(courseList);
+  const [count, setCounter] = useState(0);
+
+  const handleIncrement = () => {
+    console.log("Increment clicked");
+    setCounter(count + 1);
+  };
+
+  //delete course from list, using filter:
+  const deleteOnClick = (key) => {
+    const udpatedCourses = newCourseList.filter((course) => course.key !== key);
+    setCourseList(udpatedCourses);
+  };
 
   const togglePresence = (updatedStudent) => {
     const studentList = studentData.map((student) => {
       if (student.id === updatedStudent.id) {
         return updatedStudent;
-        // student.isPresent = !student.isPresent;
       } else {
         return student;
       }
@@ -52,7 +63,12 @@ function App() {
         // an event handler function is passed down here as a prop!
         onUpdateAttendence={togglePresence}
       ></StudentList>
-      <Counter></Counter>
+      <Counter
+        count={count}
+        handleIncrement={handleIncrement}
+        courseList={newCourseList}
+        deleteOnClick={deleteOnClick}
+      ></Counter>
     </main>
   );
 }

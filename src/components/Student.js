@@ -30,7 +30,8 @@ const Student = (props) => {
         {/* alternate ways to access property value: */}
         <li className={nameColor}>Nickname: {props.name}</li>
         <li>Email: {props["email"]} </li>
-        <i> {props.name}</i>
+        <li> {props.name}</li>
+        <li>{props.isPresent.toString()}</li>
         <li>
           <button
             onClick={() => {

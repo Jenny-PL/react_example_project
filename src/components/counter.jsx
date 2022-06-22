@@ -1,32 +1,30 @@
 import React from "react";
-import {useState } from 'react';
-
-// from Mosh React Tutorial for Beginners
+// import {useState } from 'react';
 
 const Counter = (props)=> {
-    const [count, setCounter] = useState(0);
+    const deleteOnClick = props.deleteOnClick;
+    const courseList = props.courseList;
+    const handleIncrement = props.handleIncrement;
+    const count = props.count;
 
-    const state = {
-        imageUrl: 'https://picsum.photos/200', 
-        courseNames: ['math', 'geometry', 'biology', 'art']
-    };
 
-    const handleIncrement =(count) => {
-        console.log('Increment clicked');
-        setCounter(count += 1);
-    }
+    
+    const imageUrl = 'https://picsum.photos/200';  
 
         return (
             <section>
-        <img src={state.imageUrl} alt="randomly generated pic"></img>
+        <img src={imageUrl} alt="randomly generated pic"></img>
         {/* bootstrap styling applied with badge/ badge-primary m-3 */}
         <button onClick={handleIncrement} className="btn btn-secondary btn-small">Click Here to Count UP!</button>
         <p className="badge badge-primary m-3">{count}</p>
         <h3> List of courses offered: </h3>
+
+
+        {/* deleteOnClick doesn't work because I didn't correctly give course a key. */}
         <ul>
-                {state.courseNames.map((course) => {
-                    return (<li key={course}>{course} <button className="btn btn-secondary btn-small m-3" > Delete</button>
-                    </li>);
+            {courseList.map((course) => {
+                return (<li key={course}> {course} <button onClick={() => deleteOnClick(course)}className="btn btn-secondary btn-small m-3" > Delete</button>
+                </li>);
                 })
                 }
         </ul>
