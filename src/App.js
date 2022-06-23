@@ -3,6 +3,7 @@ import StudentList from "./components/StudentList";
 import ClassInfo from "./components/ClassInfo";
 import Counter from "./components/counter";
 import { useState } from "react";
+import NewStudentForm from "./components/NewStudentForm";
 
 const initialStudentData = [
   {
@@ -63,6 +64,7 @@ function App() {
         // an event handler function is passed down here as a prop!
         onUpdateAttendence={togglePresence}
       ></StudentList>
+      <NewStudentForm></NewStudentForm>
       <Counter
         count={count}
         handleIncrement={handleIncrement}
